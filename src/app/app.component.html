@@ -1,0 +1,33 @@
+<div class="todo-app">
+  <h1>Todo app</h1>
+  <p>
+    {{ todoService.$leftCount() }} left / {{ todoService.$comletedCount() }}
+  </p>
+
+  <form (ngSubmit)="addTodo()">
+    <input
+      type=""
+      name="newText"
+      value=""
+      [(ngModel)]="newText"
+      placeholder="Next task"
+    />
+    <button type="submit">Add New Todo</button>
+  </form>
+
+  <ul>
+    @for (todo of todoService.todos(); track todo.id) {
+    <li>
+      <input
+        type="checkbox"
+        name=""
+        value=""
+        [checked]="todo.completed"
+        (change)="todoService.toggleTodo(todo.id)"
+      />
+      <span> {{ todo.text }} </span>
+      <button (click)="todoService.removeTodo(todo.id)">Delete</button>
+    </li>
+    }
+  </ul>
+</div>
