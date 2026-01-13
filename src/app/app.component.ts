@@ -1,7 +1,7 @@
 import { Component, inject } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { TodoService } from "./todo.service.js";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, NgForm } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 @Component({
@@ -15,8 +15,9 @@ export class AppComponent {
   todoService = inject(TodoService);
   newText = "";
 
-  addTodo() {
-    this.todoService.addTodo(this.newText);
+  addTodo(form: NgForm) {
+    const text = form.controls["newText"].value;
+    this.todoService.addTodo(text);
     this.newText = "";
   }
 }

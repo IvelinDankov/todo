@@ -4,14 +4,8 @@
     {{ todoService.$leftCount() }} left / {{ todoService.$comletedCount() }}
   </p>
 
-  <form (ngSubmit)="addTodo()">
-    <input
-      type=""
-      name="newText"
-      value=""
-      [(ngModel)]="newText"
-      placeholder="Next task"
-    />
+  <form #form="ngForm" (ngSubmit)="addTodo(form)">
+    <input name="newText" ngModel placeholder="Next task" />
     <button type="submit">Add New Todo</button>
   </form>
 
